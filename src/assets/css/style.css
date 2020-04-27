@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    margin: 0;
+    padding: 0
+}
+
+#app {
+    background: #f5f5f5;
+}
+
+.van-nav-bar {
+    background: #0470dc!important;
+    color: #fff!important;
+    height: 1.4rem!important;
+    padding-top: .4rem;
+}
+
+.van-list__finished-text {
+    height: 50px!important;
+    line-height: normal!important;
+}
+
+.van-field__left-icon {
+    line-height: normal!important;
+}
+
+.van-list__loading {
+    height: 40px!important;
+    line-height: normal!important;
+}
+
+.van-nav-bar .van-icon,
+.van-nav-bar .van-nav-bar__text {
+    color: #fff!important;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .4s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}

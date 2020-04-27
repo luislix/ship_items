@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>群发短信页面</title>
+    <!-- import "vant/lib/index.css"; -->
+    <style>
+        .boxtop {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<body>
+    <div style="width: 100%; height: 100% ;" id="app">
+        <!-- -----------------------顶部导航页------------------------- -->
+        <div style="width:100%; height:200px;background-color: rgba(0, 112, 220, 1);position: relative;" class="boxtop">
+            <div class="topbox1" style="width: 40%;height: 100%;">
+                <div style="text-align: center;line-height: 15px; position: absolute;top: 30%;left: 10%;">
+                    <p style="font-size: 20px; color: #ffffff;">智能短信</p>
+                    <p style="font-size: 20px; color: #ffffff;">一键群发</p>
+                </div>
+            </div>
+
+            <div class="topbox2" style="width: 40%;height: 100%;">
+                <div style="position: absolute;bottom: 0px;">
+                    <img src="./SMSimg/shouji.png" alt="" style="width: 100%; height: 100%;">
+                </div>
+            </div>
+
+            <div style="width:20%">
+                <!-- 企业服务 -->
+                <img src="./SMSimg/qiye.png" alt="" style=" position: absolute;top: 0px; right: 0px;">
+            </div>
+        </div>
+
+        <!-- ---------------------------功能页---------------------- -->
+
+        <div style="width: 100%-30px;padding: 8px 15px; border: 1px solid rgba(220, 220, 220, 1); margin-top: 18px;box-shadow: #d8d8d8;">
+
+            <div
+                style="width: 100%;display: flex;justify-content: space-between; text-align: center;padding: 10px 0px;border-bottom:0.5px solid rgba(220, 220, 220, 1)">
+                <div style="width: 10%;">
+                    <div style="width: 20px; height: 20px; border-radius: 50%; background-color: tomato;">
+                    </div>
+                </div>
+                <div style="width: 30%; text-align: left;color:rgba(4, 112, 220, 1);">湖北-武汉</div>
+                <div style="width: 30%;">
+                    <img src="./SMSimg/jiantou.png" alt="">
+                </div>
+                <div style="width: 30%;color:rgba(4, 112, 220, 1);">江苏-南京</div>
+            </div>
+
+            <div
+            style="width: 100%;display: flex;justify-content: space-between; text-align: center;margin-top: 12px;">
+            <div style="width: 10%;">
+                <div style="width: 20px; height: 20px; border-radius: 50%; ">
+                </div>
+            </div>
+            <div style="width: 45%; font-size: 12px; text-align: left;">
+               <span>装载日期  2019-07-16 </span>
+            </div>
+            <div style="width: 45%; font-size: 12px">
+                 <span>到货日期  2019-07-16</span>
+              </div>
+        </div>
+
+        <div
+        style="width: 100%;display: flex;justify-content: space-between; text-align: left;;margin-top: 4px;">
+        <div style="width: 10%;">
+            <div style="width: 20px; height: 20px; border-radius: 50%; ">
+            </div>
+        </div>
+        <div style="width: 90%; font-size: 12px;">
+           <span>运货总量  500吨</span>
+        </div>
+    </div>
+        </div>
+
+
+
+                 <!-- -------------------------底部按钮------------------ -->
+        <div style="width: 100%; position: absolute; left: 30%;bottom: 5%;">
+           <button style="background-color:rgba(4, 112, 220, 1); text-align: center;width: 40%;height: 40px; color: #ffffff;border: 0px; border-radius: 54px;">确认发送(3)</button>
+       </div>
+
+    </div>
+
+        <!-- -----------------------------------vue交互------------------------------------------ -->
+    <script type="text/javascript">
+        new Vue({ 
+            el:"#app",  //  挂载DOM 形成vue交互
+
+            data:{
+                msg: "world",
+                number:123
+            },
+
+            created(){
+                  console.log("vue页面准备加载");                 
+            },
+
+            mounted(){
+              console.log("vue页面事件执行函数");
+              console.log(this.msg,"读取msg数据");
+              console.log(this.number);
+            },
+
+           
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport " /> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <script src="jmessage-sdk-web.2.6.0.min.js "></script>
+    <script src="./js/jquery-1.11.3.min.js "></script>
+    <!-- <script src="./js/index.js "></script> -->
+    <title>嘟嘟船讯</title>
+</head>
+
+<body>
+    <noscript>
+        <strong>We're sorry but ship_item doesn't work properly without JavaScript enabled. Please enable it to
+            continue.</strong>
+    </noscript>
+    <div id="app">
+        
+    </div>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=DFdn0qFIpFd4ZKCIVAOBQTTVRVQ5HaWG"></script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=704cf6105984c33e0d001c5ad10a17a8"></script>
+    <script src="cordova.js"></script>
+    <script>
+        let JIM = new JMessage({
+            debug: true
+        });
+        var fun = function(doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function() {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    //这里是假设在640px宽度设计稿的情况下，1rem = 20px；
+                    //可以根据实际需要修改
+                    docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        }
+        fun(document, window);
+
+        document.addEventListener("deviceready", function() {
+            var permissions = cordova.plugins.permissions;
+            // let filters = [{
+            //     "value": "2", //呼出   1呼入
+            // }];
+            // window.plugins.callLog.getCallLog(filters, function(data) {
+            //     console.log('getCallLog', data);
+            // }, function(data) {
+            //     console.log('getCallError', data)
+            // });
+            // permissions.hasPermission(permissions.ACCESS_FINE_LOCATION, function(status) {
+            //     if (status.hasPermission) {
+            //         console.log("Yes :D ");
+            //     } else {
+            //         permissions.checkPermission(permissions.ACCESS_FINE_LOCATION, locationSuccessCallback, locationErrorCallback);
+            //     }
+            // });
+
+            // function locationSuccessCallback() {
+            //     permissions.requestPermission(permissions.ACCESS_FINE_LOCATION, locationSuccess, locationError);
+            // }
+
+            // function locationErrorCallback() {
+            //     console.log('error11111')
+            // }
+
+            // function locationError() {
+            //     console.log('获取失败')
+            //     console.warn('Camera permission is not turned on');
+            // }
+
+            // function locationSuccess(status) {
+            //     console.log('获取成功')
+            //     if (status) {
+
+            //     }
+            //     if (!status.hasPermission) error();
+            // }
+            // var list = [
+            //     permissions.CAMERA,
+            //     permissions.READ_EXTERNAL_STORAGE,
+            //     permissions.ACCESS_FINE_LOCATION
+            // ];
+            // permissions.hasPermission(list, permissionSuccess, null);
+            // function permissionSuccess(status) {
+            //     if( !status.hasPermission) {
+
+            //         permissions.requestPermissions(list,
+            //         function(status) {
+            //             if(!status.hasPermission) error();
+            //         },
+            //         error);
+            //     }
+            // }
+
+
+            // navigator.camera.cleanup(onSuccess, onFail);
+
+            // function onSuccess() {
+            //     console.log("Camera cleanup success.")
+            // }
+
+            // function onFail(message) {
+            //     alert('Failed because: ' + message);
+            // }
+
+
+            // var permissions = cordova.plugins.permissions;
+            // permissions.hasPermission(permissions.CAMERA, function(status) {
+            //     if (status.hasPermission) {
+            //         console.log("Yes :D ");
+            //     } else {
+            //         console.warn("No :( ");
+            //     }
+            // });
+            // permissions.requestPermission(permissions.CAMERA, success, error);
+
+            // function error() {
+            //     console.warn('Camera permission is not turned on');
+            // }
+
+            // function success(status) {
+            //     if (!status.hasPermission) error();
+            // }
+
+            //window.JPush.clearLocalNotifications() // 同时适用于 iOS
+
+            // 手机信息状态栏
+            StatusBar.styleLightContent()
+            StatusBar.overlaysWebView(true);
+
+            localStorage.setItem('device', JSON.stringify(device));
+            window.JPush.init()
+            window.JPush.getConnectionState(function(result) {
+                if (result == 0) {} else {}
+            });
+            if (device.platform == "Android") {
+                // var options = new ContactFindOptions();
+                // options.filter = "";
+                // options.multiple = true;
+                // var fields = ["displayName", "phoneNumbers"];
+                // navigator.contacts.find(fields, onSuccess, onError, options);
+                window.plugins.callLog.hasReadPermission(successCallback, errorCallback);
+                window.plugins.callLog.requestReadPermission(successCallback, errorCallback);
+
+                // async function getCallLog() {
+                //     return await new Promise((resolve, reject) => {
+                //         var filters = [{
+                //             "name": "date",
+                //             "value": +new Date() - 604800000,
+                //             "operator": ">="
+                //         }]
+                //         window.plugins.callLog.getCallLog(filters, function(data) {
+                //             console.log('getCallLog', data);
+                //             resolve(data)
+                //         }, function(data) {
+                //             console.log(data)
+                //             reject(data)
+                //         });
+                //     })
+                // }
+                // getCallLog().then(res => {
+                //     console.log('通话记录', res)
+                //     localStorage.setItem('calllog', res)
+                // })
+
+                StatusBar.overlaysWebView(true);
+                StatusBar.backgroundColorByHexString('#33000000');
+                if (cordova.platformId == 'android') {
+                    StatusBar.overlaysWebView(true);
+                    StatusBar.backgroundColorByHexString('#33000000');
+                }
+                // 获取地址-Android
+                navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
+                // 获取地址
+                function geolocationSuccess(position) {
+                    let address = {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    };
+                    console.log('address', address)
+                    localStorage.setItem('position', JSON.stringify(address));
+                }
+
+                function geolocationError(error) {}
+                document.addEventListener("jpush.receiveMessage", function(event) {
+                    console.log('event', event)
+                    if (device.platform == "Android") {
+                        let title = event.title;
+                        let text = event.message;
+                        cordova.plugins.notification.local.schedule({
+                            title: title,
+                            text: text,
+                            foreground: true
+                        });
+                    } else {
+                        message = event.content;
+                    }
+                }, false)
+            } else {
+                window.JPush.init()
+                window.JPush.isPushStopped(function(result) {
+                    if (result == 0) {
+                        // 开启
+                    } else {
+                        // 关闭
+                        // alert('开启接收推送消息，以便接收订单状态！')
+                        window.cordova.plugins.settings.open("application_details", function() {}, function() {})
+                    }
+                })
+
+                // ios获取地址
+                var onSuccess = function(position) {
+                    let address = {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    };
+                    console.log('address', address)
+                    localStorage.setItem('position', JSON.stringify(address));
+                };
+
+                function onError(error) {
+                    // alert('获取您的地理位置，以便接收订单状态！')
+                    navigator.notification.confirm(
+                        '嘟嘟船讯提醒您!', // message
+                        function(item) {
+                            console.log('确定地址授权')
+                            window.cordova.plugins.settings.open("application_details", function() {}, function() {})
+                        }, // callback to invoke with index of button pressed
+                        '获取您的地理位置，以便接收订单状态！', // title
+                        ['取消', '确定'] // buttonLabels
+                    );
+                }
+
+                // ios-地址
+                navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+                // 推送-ios
+                document.addEventListener("jpush.receiveLocalNotification", onLocalNotification, false);
+                var onLocalNotification = function(event) {
+                    // alert("receive Local Notification:" + JSON.stringify(event))
+                }
+                document.addEventListener("jpush.receiveNotification", onReceiveNotification, false);
+                var onReceiveNotification = function(event) {
+                    var alertContent = event.aps.alert
+                        // alert("open Notification:" + alertContent)
+                }
+                document.addEventListener("jpush.backgroundNotification", onBackgroundNotification, false);
+                var onBackgroundNotification = function(event) {
+                    var alertContent = event.aps.alert
+                        // alert("open Notification:" + alertContent)
+                };
+                var onBackgroundNotification = function(event) {
+                    var alertContent = event.aps.alert
+                        // alert("open Notification:" + alertContent)
+                };
+                document.addEventListener("jpush.receiveMessage", function(event) {
+                    if (message) {
+                        // delayTime: 本地推送延迟多长时间后显示，数值类型或纯数字的字符型均可，单位为秒。
+                        // content: 本地推送需要显示的内容。
+                        // badge: 角标的数字。如果不需要改变角标传-1。数值类型或纯数字的字符型均可。
+                        // notificationID: 本地推送标识符,字符串。
+                        // extras: 自定义参数，可以用来标识推送和增加附加信息。字典类型。
+                        let message = event;
+                        // alert(message)
+                        let content = message.content;
+                        let notificationID = "notificationID";
+                        let extras = "extras";
+                        window.JPush.addLocalNotificationForIOS(0, content, 0, notificationID, extras);
+                    }
+                }, false);
+            };
+
+            window.setTimeout(() => {
+                window.JPush.getRegistrationID((data) => {
+                    console.log('clientid', data)
+                    localStorage.setItem('clientId', data)
+                })
+            }, 100);
+
+            window.JPush.isPushStopped(function(result) {
+                if (result == 0) {
+                    // 开启
+                } else {
+                    // 关闭
+                    alert('开启接收推送消息，以便接收订单状态！')
+                }
+            })
+
+            // 获取点击通知内容
+            document.addEventListener("jpush.openNotification", function(event) {
+                var alertContent;
+                if (device.platform == "Android") {
+                    alertContent = event.alert
+                } else {
+                    alertContent = event.aps.alert
+                }
+                // alert('alertContent')
+            }, false)
+
+            function syncStatus(status) {
+                console.log('status', status);
+                switch (status) {
+                    case SyncStatus.UP_TO_DATE:
+                        console.log("UP_TO_DATE ");
+                        break;
+                    case SyncStatus.UPDATE_INSTALLED:
+                        console.log("UPDATE_INSTALLED ");
+                        break;
+                    case SyncStatus.UPDATE_IGNORED:
+                        console.log("UPDATE_IGNORED ");
+                        break;
+                    case SyncStatus.IN_PROGRESS:
+                        console.log("IN_PROGRESS ");
+                        break;
+                    case SyncStatus.CHECKING_FOR_UPDATE:
+                        console.log("CHECKING_FOR_UPDATE ");
+                        break;
+                    case SyncStatus.AWAITING_USER_ACTION:
+                        console.log("AWAITING_USER_ACTION ");
+                        break;
+                    case SyncStatus.DOWNLOADING_PACKAGE:
+                        console.log("DOWNLOADING_PACKAGE ");
+                        break;
+                    case SyncStatus.INSTALLING_UPDATE:
+                        console.log("INSTALLING_UPDATE ");
+                        break;
+                    case SyncStatus.ERROR:
+                        console.log("ERROR ");
+                        break;
+                }
+            }
+            // 热升级下载进度
+            function downloadProgress(downloadProgress) {
+                console.log('status', downloadProgress)
+                if (downloadProgress) {
+                    console.log("Downloading " + downloadProgress.receivedBytes + " of " + downloadProgress.totalBytes);
+                    console.log("-----this-time------ " + new Date());
+                } else {
+                    console.log('else')
+                }
+            }
+
+            window.codePush.sync(syncStatus, null, downloadProgress);
+
+            window.codePush.getCurrentPackage(function(update) {
+                console.log('update', update)
+                if (!update) {
+                    console.log("No updates have been installed ");
+                    return;
+                } else {
+                    console.log('update123456')
+                }
+                if (update.isFirstRun && update.description) {} else {
+                    console.log('updata789 ')
+                }
+            });
+
+            // 更新完毕
+            window.codePush.notifyApplicationReady(onNotifySucceeded, onNotifyFailed);
+
+            function onNotifySucceeded() {
+                console.log("NotifySucceeded. ");
+            };
+
+            function onNotifyFailed(error) {
+                console.log("NotifyFailed. " + error);
+            }
+        }, false)
+
+        function successCallback(success) {
+            console.log('获取电话本成功', success)
+            var filters = [{
+                "name": "date",
+                "value": (+new Date() - 604800000),
+                "operator": ">="
+            }]
+            window.plugins.callLog.getCallLog(filters, function(data) {
+                console.log('getCallLog', data);
+            }, function(error) {
+                console.log('getCallError', error)
+            });
+        }
+
+        function errorCallback(error) {
+            console.log('获取电话权限失败', error)
+        }
+
+        // document.addEventListener("deviceready", onDeviceReady, false);        
+        //  function onDeviceReady() {         
+        //      var options = new ContactFindOptions();
+        //      options.filter = "";
+        //      options.multiple=true;
+        //      var fields = ["displayName","phoneNumbers"];
+        //      navigator.contacts.find(fields, onSuccess, onError,options);
+        //  }       
+        function onSuccess(contacts) {
+            console.log("111111111", contacts)
+        }
+
+        function onError(contactError) {
+            console.log('onError!', contactError);
+        }
+
+        // 热更新
+        // window.codePush.sync(syncStatus, {
+        //     updateDialog: true,
+        //     installMode: InstallMode.IMMEDIATE,
+        //     updateDialog: {
+        //         updateTitle: "An update is available! ",
+        //         optionalUpdateMessage: "Message ",
+        //         optionalInstallButtonLabel: "Install Button ",
+        //         optionalIgnoreButtonLabel: "Ignore Button ",
+        //     }
+        // }, onProgress);
+        // function onProgress(downloadProgress) {
+        //     console.log("Downloading " + downloadProgress.receivedBytes + " of " + downloadProgress.totalBytes + " bytes. ");
+        // };
+    </script>
+</body>
+
+</html>
