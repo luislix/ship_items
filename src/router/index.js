@@ -16,12 +16,12 @@ const routes = [{
     //     component: () =>
     //         import ("../views/login/userType.vue")
     // },
-    {
-        path: "/login",
-        name: "login",
-        component: () =>
-            import ("../views/login/login.vue")
-    },
+    // {
+    //     path: "/login",
+    //     name: "login",
+    //     component: () =>
+    //         import ("../views/login/login.vue")
+    // },
     {
         path: "/changePwd",
         name: "changePwd",
