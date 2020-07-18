@@ -28,13 +28,13 @@ const routes = [{
     {
 
     },
-    // {
-    //     path: "/changePwd",
-    //     name: "changePwd",
-    //     component: () =>
-    //         import ("../views/login/changePwd.vue"),
-    //     meta: { title: "修改密码" }
-    // },
+    {
+        path: "/changePwd",
+        name: "changePwd",
+        component: () =>
+            import ("../views/login/changePwd.vue"),
+        meta: { title: "修改密码" }
+    },
     {
         path: "/register",
         name: "register",
