@@ -11,29 +11,32 @@ const routes = [{
         redirect: "/bootpage"
     },
     // {
-    //     path: "/userType",
-    //     name: "userType",
+    //     path: "/changePwd",
+    //     name: "changePwd",
     //     component: () =>
-    //         import ("../views/login/userType.vue")
+    //         import ("../views/login/changePwd.vue"),
+    //     meta: { title: "修改密码" }
     // },
     // {
-    //     path: "/login",
-    //     name: "login",
+    //     path: "/register",
+    //     name: "register",
     //     component: () =>
-    //         import ("../views/login/login.vue")
+    //         import ("../views/login/register.vue")
     // },
     {
-        path: "/changePwd",
-        name: "changePwd",
+        path: "/userType",
+        name: "userType",
         component: () =>
-            import ("../views/login/changePwd.vue"),
-        meta: { title: "修改密码" }
+            import ("../views/login/userType.vue")
     },
     {
-        path: "/register",
-        name: "register",
+        path: "/login",
+        name: "login",
         component: () =>
-            import ("../views/login/register.vue")
+            import ("../views/login/login.vue")
+    },
+    {
+
     },
     {
         path: "/index",
