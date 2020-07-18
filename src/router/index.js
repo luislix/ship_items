@@ -576,16 +576,25 @@ const routes = [{
         meta: { title: "邀请好友" }
     },
     {
-        path: "/bootpage333",
+        path: "/bootpage999",
         name: "bootpage",
         component: () =>
             import ("@/views/bootpage/bootpage.vue")
     },
     {
-        path: "/bootpage555",
+        path: "/bootpage444",
         name: "bootpage",
         component: () =>
             import ("@/views/bootpage/bootpage.vue")
+    },
+    {
+        path: "/bootpage777",
+        name: "bootpage",
+        component: () =>
+            import ("@/views/bootpage/bootpage.vue"),
+        children:[
+            
+        ]
     },
 ]
 
