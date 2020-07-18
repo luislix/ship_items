@@ -141,18 +141,18 @@ const routes = [{
         meta: { title: "货源详情" }
     },
     {
-        path: "/issueShip",
-        name: "issueShip",
-        component: () =>
-            import ("@/views/ship/issueShip/issueShip.vue"),
-        meta: { title: "发布船源" }
-    },
-    {
         path: "/addShip",
         name: "addShip",
         component: () =>
             import ("@/views/ship/addShip/addShip.vue"),
         meta: { title: "添加船只" }
+    },
+    {
+        path: "/issueShip",
+        name: "issueShip",
+        component: () =>
+            import ("@/views/ship/issueShip/issueShip.vue"),
+        meta: { title: "发布船源" }
     },
     {
         path: "/shipOrderDetails",
