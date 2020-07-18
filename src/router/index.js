@@ -580,7 +580,24 @@ const routes = [{
         component: () =>
             import ("@/views/myData/invitationFriend/invitate.vue"),
         meta: { title: "邀请好友" }
+    },
+    //邀请好友111
+    {
+        path: "/invitates",
+        name: "invitates",
+        component: () =>
+            import ("@/views/myData/invitationFriend/invitate.vue"),
+        meta: { title: "邀请好友" }
+    },
+    //邀请好友2222
+    {
+        path: "/invitate33",
+        name: "invitate33",
+        component: () =>
+            import ("@/views/myData/invitationFriend/invitate.vue"),
+        meta: { title: "邀请好友" }
     }
+
 ]
 
 const router = new VueRouter({
