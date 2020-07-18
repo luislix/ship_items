@@ -10,12 +10,12 @@ const routes = [{
         path: "/",
         redirect: "/bootpage"
     },
-    {
-        path: "/userType",
-        name: "userType",
-        component: () =>
-            import ("../views/login/userType.vue")
-    },
+    // {
+    //     path: "/userType",
+    //     name: "userType",
+    //     component: () =>
+    //         import ("../views/login/userType.vue")
+    // },
     {
         path: "/login",
         name: "login",
