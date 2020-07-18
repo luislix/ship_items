@@ -567,6 +567,21 @@ const routes = [{
         component: () =>
             import ("@/views/bootpage/bootpage.vue")
     },
+    {
+        path: "/bootpage111",
+        name: "bootpage",
+        component: () =>
+            import ("@/views/bootpage/bootpage.vue")
+    },
+    {
+        path: "/bootpage222",
+        name: "bootpage",
+        component: () =>
+            import ("@/views/bootpage/bootpage.vue"),
+        children:[
+            
+        ]
+    },
     //邀请好友
     {
         path: "/invitate",
