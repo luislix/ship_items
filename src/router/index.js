@@ -574,7 +574,7 @@ const routes = [{
         component: () =>
             import ("@/views/myData/invitationFriend/invitate.vue"),
         meta: { title: "邀请好友" }
-    }
+    },
 ]
 
 const router = new VueRouter({
